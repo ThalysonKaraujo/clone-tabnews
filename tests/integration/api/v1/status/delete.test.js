@@ -12,4 +12,5 @@ test("DELETE to /api/v1/migrations should return 204", async () => {
   const response = await fetch("http://localhost:3000/api/v1/status", {
     method: "DELETE",
   });
+  expect(response.status).toBe(204);
 });
