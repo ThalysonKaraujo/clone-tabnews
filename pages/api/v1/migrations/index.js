@@ -32,12 +32,7 @@ export default async function migrations(req, res) {
   }
 
   if (req.method === "DELETE") {
-    const migratedMigrations = await migrationRunner({
-      ...defaultMigrationsOptions,
-      dryRun: false,
-    });
-    await dbClient.end();
-    return res.status(204).json(migratedMigrations);
+    return res.status(204).json({ chave: "valor" });
   }
   res.status(405).end();
 }
