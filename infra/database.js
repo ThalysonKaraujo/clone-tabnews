@@ -52,11 +52,12 @@ async function getNewClient() {
   await client.connect();
   return client;
 }
-
-export default {
-  query: query,
-  version: version,
-  maxConnections: maxConnections,
-  openedConnections: openedConnections,
-  getNewClient: getNewClient,
+const database = {
+  query,
+  version,
+  maxConnections,
+  openedConnections,
+  getNewClient,
 };
+
+export default database;
