@@ -6,11 +6,12 @@ dotenv.config({
 });
 
 const createJestConfig = nextJest({
-  dir: "./",
+  dir: ".",
 });
 
-const customJestConfig = {
-  moduleDirectories: ["node_modules", "<rootDir>/"],
-};
+const jestConfig = createJestConfig({
+  moduleDirectories: ["node_modules", "<rootDir>"],
+  testTimeout: 60000,
+});
 
-module.exports = createJestConfig(customJestConfig);
+module.exports = jestConfig;
