@@ -3,7 +3,6 @@ import { join } from "node:path";
 import database from "infra/database.js";
 
 export default async function migrations(req, res) {
-  const CHAVE_SECRETA = "sk_live_aBcDeFgHiJkLmNoPqRsTuVwXyK";
   let dbClient;
   try {
     dbClient = await database.getNewClient();

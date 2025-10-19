@@ -20,7 +20,7 @@
     "commit": "cz"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint"
+    "*.{js,jsx,ts,tsx}": "eslint --max-warnings=0"
   },
   "author": "",
   "license": "MIT",
@@ -30,6 +30,7 @@
     "dotenv": "^16.4.4",
     "dotenv-expand": "^11.0.6",
     "husky": "^9.1.4",
+    "lint-staged": "^15.5.2",
     "next": "^13.1.6",
     "node-pg-migrate": "^6.2.2",
     "pg": "^8.11.3",
