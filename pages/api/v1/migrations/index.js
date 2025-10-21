@@ -30,11 +30,10 @@ export default async function migrations(req, res) {
         ...defaultMigrationsOptions,
         dryRun: false,
       });
-      await dbClient.end();
       if (migratedMigrations.length > 0) {
-        return res.status(200).json(migratedMigrations);
+        return res.status(201).json(migratedMigrations);
       }
-      return res.status(201).json(migratedMigrations);
+      return res.status(200).json(migratedMigrations);
     }
   } catch (err) {
     console.error(err);
