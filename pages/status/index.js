@@ -21,21 +21,21 @@ function DatabaseStatus() {
     refreshInterval: 2000,
   });
 
-  let pgVersion = "Carregando...";
-  let maxConnections = "Carregando...";
-  let openedConnections = "Carregando...";
+  let databaseInfo = "Carregando...";
 
   if (!isLoading && data) {
-    pgVersion = data.dependencies.database.version;
-    openedConnections = data.dependencies.database.opened_connections;
-    maxConnections = data.dependencies.database.max_connections;
+    databaseInfo = {
+      pgVersion: `Versão: ${data.dependencies.database.version}`,
+      openedConnections: `Conexões abertas: ${data.dependencies.database.opened_connections}`,
+      maxConnections: `Conexões máximas: ${data.dependencies.database.max_connections}`,
+    };
   }
   return (
     <>
       <h2>DATABASE:</h2>
-      <div> Postgres Version: {pgVersion}</div>
-      <div> Opened Connections: {openedConnections}</div>
-      <div> Max Connections: {maxConnections}</div>
+      <li>{databaseInfo.pgVersion}</li>
+      <li>{databaseInfo.openedConnections}</li>
+      <li>{databaseInfo.maxConnections}</li>
     </>
   );
 }
