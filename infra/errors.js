@@ -40,6 +40,26 @@ export class NotFoundError extends Error {
   }
 }
 
+export class UnauthorizedError extends Error {
+  constructor({ statusCode, action, message }) {
+    super(message || "Usuário não autenticado.", {
+      action,
+    });
+    this.name = "UnauthorizedError";
+    this.action = action || "Faça novamento o login para continuar.";
+    this.statusCode = statusCode || 401;
+  }
+
+  toJSON() {
+    return {
+      name: this.name,
+      message: this.message,
+      action: this.action,
+      status_code: this.statusCode,
+    };
+  }
+}
+
 export class ServiceError extends Error {
   constructor({ cause, message }) {
     super(message || "Serviço indisponível no momento", {
