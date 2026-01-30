@@ -17,35 +17,35 @@ async function getAuthenticatedUser(providedEmail, providedPassword) {
     }
     throw error;
   }
+}
 
-  async function findUserByEmail(providedEmail) {
-    let storedUser;
-    try {
-      storedUser = await user.findOneByEmail(providedEmail);
-    } catch (error) {
-      if (error instanceof NotFoundError) {
-        throw new UnauthorizedError({
-          message: "Dados de autenticação não conferem.",
-          action: "Verifique se os dados enviados estão corretos.",
-        });
-      }
-      throw error;
-    }
-    return storedUser;
-  }
-
-  async function validatePassowrd(providedPassword, storedPassword) {
-    const correctPasswordMatch = await password.compare(
-      providedPassword,
-      storedPassword,
-    );
-
-    if (!correctPasswordMatch) {
+async function findUserByEmail(providedEmail) {
+  let storedUser;
+  try {
+    storedUser = await user.findOneByEmail(providedEmail);
+  } catch (error) {
+    if (error instanceof NotFoundError) {
       throw new UnauthorizedError({
         message: "Dados de autenticação não conferem.",
         action: "Verifique se os dados enviados estão corretos.",
       });
     }
+    throw error;
+  }
+  return storedUser;
+}
+
+async function validatePassowrd(providedPassword, storedPassword) {
+  const correctPasswordMatch = await password.compare(
+    providedPassword,
+    storedPassword,
+  );
+
+  if (!correctPasswordMatch) {
+    throw new UnauthorizedError({
+      message: "Dados de autenticação não conferem.",
+      action: "Verifique se os dados enviados estão corretos.",
+    });
   }
 }
 
