@@ -9,7 +9,11 @@ import * as cookie from "cookie";
 import session from "models/session";
 
 function onErrorHandler(error, request, response) {
-  if (error instanceof ValidationError || error instanceof NotFoundError) {
+  if (
+    error instanceof ValidationError ||
+    error instanceof NotFoundError ||
+    error instanceof UnauthorizedError
+  ) {
     if (error instanceof UnauthorizedError) {
       clearSessionCookie(response);
     }
